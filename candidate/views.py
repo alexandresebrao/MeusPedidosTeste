@@ -57,6 +57,8 @@ def new(request):
             template = loader.get_template('finish.html')
         else:
             context_content['errors'] = messages
+    #Aqui populamos o nosso context com um Candidate novo ou um Invalido para concertos
+    
     context_content['candidate'] = candidate
     context = RequestContext(request, context_content)
     return HttpResponse(template.render(context))

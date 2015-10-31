@@ -47,6 +47,7 @@ class Candidate(models.Model):
     ios_grade = models.IntegerField(validators=[validate_number],default=0)
     android_grade = models.IntegerField(validators=[validate_number],default=0)
 
+    #Validadores
     def clean(self):
         if (self.html_grade or self.css_grade or self.javascript_grade or self.python_grade or self.django_grade or self.ios_grade or self.android_grade) < 0:
             raise ValidationError('Valor tem que ser maior que 0')
@@ -57,15 +58,18 @@ class Candidate(models.Model):
     def classificate(self):
         #Antes de avaliar já vamos definir a verdade para generic, caso ele passe por pelo menos uma das avaliações não será enviado
         generic = True
-        # Desenvolvedor Web
+        # Desenvolvedor FrontEnd
         if (self.html_grade and self.css_grade and self.javascript_grade) >= 7:
              send_mail(classification['web']['subject'], classification['web']['body'], 'alexandre.sebrao@gmail.com', [self.email], fail_silently=False)
              generic = False
+        #Desenvolvedor BackEnd
         if (self.python_grade and self.django_grade)  >= 7:
              send_mail(classification['backend']['subject'], classification['backend']['body'], 'alexandre.sebrao@gmail.com', [self.email], fail_silently=False)
              generic = False
+        #Desenvolvedor Mobile
         if (self.ios_grade and self.android_grade) >= 7:
             send_mail(classification['mobile']['subject'], classification['mobile']['body'], 'alexandre.sebrao@gmail.com', [self.email], fail_silently=False)
             generic = False
+        #Programador generico
         if generic:
             send_mail(classification['generic']['subject'], classification['generic']['body'], 'alexandre.sebrao@gmail.com', [self.email], fail_silently=False)
