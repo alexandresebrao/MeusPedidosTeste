@@ -1,11 +1,11 @@
-{% load staticfiles %}<!DOCTYPE html>
+{% load staticfiles %}{% load candidate_extras %}<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Cadastro de Vagas para Meus Pedidos</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
@@ -40,7 +40,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="textinput">Nome Completo</label>
           <div class="col-md-4">
-          <input id="fullname" name="fullname" type="text" placeholder="Nome Completo" class="form-control input-md">
+          <input id="fullname" name="fullname" type="text" placeholder="Nome Completo" class="form-control input-md" value={{candidate.fullname}}>
           <span class="help-block">Preencha com seu nome completo</span>
           </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="textinput">E-mail</label>
           <div class="col-md-4">
-          <input id="email" name="email" type="text" placeholder="exemplo@dominio.com" class="form-control input-md">
+          <input id="email" name="email" type="text" placeholder="exemplo@dominio.com" class="form-control input-md" value={{candidate.email}}>
           <span class="help-block">Preencha com o seu email</span>
           </div>
         </div>
@@ -59,351 +59,92 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="radios">Conhecimento em HTML</label>
           <div class="col-md-4">
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="html_grade" id="html_grade-0" value="0" checked="checked">
-              0
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+
+            <input type="radio" name="html_grade" id="html_grade-{{i}}" value="{{i}}" {%if i == candidate.html_grade%}checked="checked"{%endif%}>
+              {{i}}
             </label>
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="html_grade" id="html_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="html_grade" id="html_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="html_grade" id="html_grade-10" value="10">
-              10
-            </label>
+            {% endfor %}
           </div>
         </div>
-
         <div class="form-group">
           <label class="col-md-4 control-label" for="radios">Conhecimento em CSS</label>
           <div class="col-md-4">
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="css_grade" id="css_grade-0" value="0" checked="checked">
-              0
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+
+            <input type="radio" name="css_grade" id="css_grade-{{i}}" value="{{i}}" {%if i == candidate.css_grade%}checked="checked"{%endif%}>
+              {{i}}
             </label>
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="css_grade" id="css_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="css_grade" id="css_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="css_grade" id="css_grade-10" value="10">
-              10
-            </label>
+            {% endfor %}
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="radios">Conhecimento em Javascript</label>
           <div class="col-md-4">
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="javascript_grade" id="javascript_grade-0" value="0" checked="checked">
-              0
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+            <input type="radio" name="javascript_grade" id="javascript_grade-{{i}}" value="{{i}}" {%if i == candidate.javascript_grade%}checked="checked"{%endif%}>
+              {{i}}
             </label>
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="javascript_grade" id="javascript_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="javascript_grade" id="javascript_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="javascript_grade" id="javascript_grade-10" value="10">
-              10
-            </label>
+            {% endfor %}
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="radios">Conhecimento em Python</label>
           <div class="col-md-4">
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="python_grade" id="python_grade-0" value="0" checked="checked">
-              0
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+
+            <input type="radio" name="python_grade" id="python_grade-{{i}}" value="{{i}}" {%if i == candidate.python_grade%}checked="checked"{%endif%}>
+              {{i}}
             </label>
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="python_grade" id="python_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="python_grade" id="python_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="python_grade" id="python_grade-10" value="10">
-              10
-            </label>
+            {% endfor %}
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-4 control-label" for="radios">Conhecimento em Django</label>
           <div class="col-md-4">
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="django_grade" id="django_grade-0" value="0" checked="checked">
-              0
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+
+            <input type="radio" name="django_grade" id="django_grade-{{i}}" value="{{i}}" {%if i == candidate.django_grade%}checked="checked"{%endif%}>
+              {{i}}
             </label>
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="django_grade" id="django_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="django_grade" id="django_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="django_grade" id="django_grade-10" value="10">
-              10
-            </label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="radios">Conhecimento em iOS</label>
-          <div class="col-md-4">
-            <label class="radio-inline" for="radios-0">
-              <input type="radio" name="ios_grade" id="ios_grade-0" value="0" checked="checked">
-              0
-            </label>
-            <label class="radio-inline" for="radios-1">
-              <input type="radio" name="ios_grade" id="ios_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radios-2">
-              <input type="radio" name="ios_grade" id="ios_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radios-3">
-              <input type="radio" name="ios_grade" id="ios_grade-10" value="10">
-              10
-            </label>
+            {% endfor %}
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-md-4 control-label" for="radandroid">Conhecimento em Android</label>
+          <label class="col-md-4 control-label" for="radios">Conhecimento em iOS</label>
           <div class="col-md-4">
-            <label class="radio-inline" for="radandroid-0">
-              <input type="radio" name="android_grade" id="android_grade-0" value="0" checked="checked">
-              0
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+
+            <input type="radio" name="ios_grade" id="ios_grade-{{i}}" value="{{i}}" {%if i == candidate.ios_grade%}checked="checked"{%endif%}>
+              {{i}}
             </label>
-            <label class="radio-inline" for="radandroid-1">
-              <input type="radio" name="android_grade" id="android_grade-1" value="1">
-              1
-            </label>
-            <label class="radio-inline" for="radandroid-2">
-              <input type="radio" name="android_grade" id="android_grade-2" value="2">
-              2
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-3" value="3">
-              3
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-4" value="4">
-              4
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-5" value="5">
-              5
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-6" value="6">
-              6
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-7" value="7">
-              7
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-8" value="8">
-              8
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-9" value="9">
-              9
-            </label>
-            <label class="radio-inline" for="radandroid-3">
-              <input type="radio" name="android_grade" id="android_grade-10" value="10">
-              10
-            </label>
+            {% endfor %}
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="radios">Conhecimento em Android</label>
+          <div class="col-md-4">
+            {% for i in 11|get_range %}
+            <label class="radio-inline" for="radios-{i}">
+
+            <input type="radio" name="android_grade" id="android_grade-{{i}}" value="{{i}}" {%if i == candidate.android_grade%}checked="checked"{%endif%}>
+              {{i}}
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
         <legend>Ao Terminar de Preencher Clique Abaixo para Submeter</legend>
         <!-- Button -->
         <div class="form-group">

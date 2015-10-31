@@ -38,7 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'candidate',
+    'djrill',
 )
+
+MANDRILL_API_KEY = "DouGBtvWZIGpD1Yg9QQMRg"
+EMAIL_BACKEND = "djrill.mail.backends.djrill.DjrillBackend"
+DEFAULT_FROM_EMAIL = "alexandre.sebrao@gmail.com"  # if you don't already have this in settings
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -112,10 +117,3 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
-
-#EMAIL
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'alexandresebrao'
-EMAIL_HOST_PASSWORD = 'MeusPedidos12'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True

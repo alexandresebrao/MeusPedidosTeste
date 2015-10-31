@@ -39,15 +39,20 @@ class Candidate(models.Model):
     fullname = models.CharField(max_length=200)
     email = models.EmailField()
     # Conhecimentos do Candidato
-    html_grade = models.IntegerField(validators=[validate_number])
-    css_grade = models.IntegerField(validators=[validate_number])
-    javascript_grade = models.IntegerField(validators=[validate_number])
-    python_grade = models.IntegerField(validators=[validate_number])
-    django_grade = models.IntegerField(validators=[validate_number])
-    ios_grade = models.IntegerField(validators=[validate_number])
-    android_grade = models.IntegerField(validators=[validate_number])
+    html_grade = models.IntegerField(validators=[validate_number],default=0)
+    css_grade = models.IntegerField(validators=[validate_number],default=0)
+    javascript_grade = models.IntegerField(validators=[validate_number],default=0)
+    python_grade = models.IntegerField(validators=[validate_number],default=0)
+    django_grade = models.IntegerField(validators=[validate_number],default=0)
+    ios_grade = models.IntegerField(validators=[validate_number],default=0)
+    android_grade = models.IntegerField(validators=[validate_number],default=0)
 
-    # Vamos classificar o usuário e enviar o email
+    def clean(self):
+        if (self.html_grade or self.css_grade or self.javascript_grade or self.python_grade or self.django_grade or self.ios_grade or self.android_grade) < 0:
+            raise ValidationError('Valor tem que ser maior que 0')
+        if (self.html_grade or self.css_grade or self.javascript_grade or self.python_grade or self.django_grade or self.ios_grade or self.android_grade) > 10:
+            raise ValidationError('Valor tem que ser menor que 11')
+
 
     def classificate(self):
         #Antes de avaliar já vamos definir a verdade para generic, caso ele passe por pelo menos uma das avaliações não será enviado
